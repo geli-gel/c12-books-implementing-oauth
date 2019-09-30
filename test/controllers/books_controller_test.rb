@@ -38,4 +38,26 @@ describe BooksController do
 
   end
 
+  describe 'show action' do
+
+    it 'responds with a success when id given exists' do
+      
+      get '/books/0'
+
+      must_respond_with :success
+
+    end
+
+    it 'responds with a not_found when id given does not exist' do
+      get '/books/500'
+
+      must_respond_with :not_found
+    end
+
+
+
+  end
+
+
+
 end

@@ -19,6 +19,10 @@ class BooksController < ApplicationController
   def show
     book_id = params[:id].to_i
     @book = BOOKS[book_id]
+    if @book.nil?
+      head :not_found
+      return
+    end
   end
 
 end
