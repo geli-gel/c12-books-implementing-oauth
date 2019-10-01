@@ -1,22 +1,11 @@
 <h1>The Index Action: The place where you get all of the books!</h1>
 
 <section>
-  <h2>Some Interesting Book Data</h2>
-  <p>
-    All of the books data is: <%= @books %>
-  </p>
-
-  <p>
-    The first book is... <%= @books.first[:title] %> by <%= @books.first[:author] %>
-  </p>
-</section>
-
-<section>
   <h2>List of all Books</h2>
   <ul>
     <% @books.each do |book| %>
       <li>
-        <%= book[:title] %> by <%= book[:author] %>
+        <%= book.title %> by <%= book.author %>
       </li>
     <% end %>
   </ul>

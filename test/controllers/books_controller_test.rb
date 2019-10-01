@@ -41,8 +41,9 @@ describe BooksController do
   describe 'show action' do
 
     it 'responds with a success when id given exists' do
+      valid_book = Book.create(title: "Valid Book")
       
-      get '/books/0'
+      get "/books/#{valid_book.id}"
 
       must_respond_with :success
 
