@@ -10,6 +10,16 @@
   </head>
 
   <body>
+
+    <nav>
+      <ul>
+        <li>
+          <%# This is the syntax for defining a link in HTML (More in depth in View Helpers lesson) %>
+          <%= link_to "Home!", root_path %>
+        </li>
+      </ul>
+    </nav>
+
     <%= yield %>
   </body>
 </html>
