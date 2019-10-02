@@ -41,4 +41,21 @@ class BooksController < ApplicationController
     end
   end
 
+  def edit
+    @book = Book.find_by(id: params[:id] )
+  end
+
+  def update
+    @book = Book.find_by(id: params[:id] )
+    @book.title = params[:book][:title]
+    @book.author = params[:book][:author]
+    @book.description = params[:book][:description]
+
+    if @book.save
+      redirect_to book_path(@book.id)
+    else
+      render new_book_path
+    end
+  end
+
 end
