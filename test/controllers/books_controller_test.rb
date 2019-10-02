@@ -11,8 +11,8 @@ describe BooksController do
 
       # Act
       # Send a specific request... a GET request to the path "/books"
-      get "/books"
-      # get books_path
+      # get "/books"
+      get books_path
 
       # Assert
       # The response was OK!
@@ -30,7 +30,8 @@ describe BooksController do
       # Insert some code here that destroys all of the books in the database...
 
       # Act
-      get "/books"
+      # get "/books"
+      get books_path
 
       # Assert
       # must_respond_with :missing
@@ -43,14 +44,15 @@ describe BooksController do
     it 'responds with a success when id given exists' do
       valid_book = Book.create(title: "Valid Book")
       
-      get "/books/#{valid_book.id}"
+      # get "/books/#{valid_book.id}"
+      get book_path(valid_book.id)
 
       must_respond_with :success
 
     end
 
     it 'responds with a not_found when id given does not exist' do
-      get '/books/500'
+      get book_path("500")
 
       must_respond_with :not_found
     end
