@@ -1,0 +1,12 @@
+<h2>New Book Form</h2>
+
+<%# form_with is a view helper that will generate the proper form for us and will help us hook into the other controller actions %>
+<%= form_with model: @book, class: "new-book-form" do |f| %>
+  This is inside the form!
+
+  <%# f.text_field :somenameofsomeattributeonbook ... in this case, :title %>
+  <%= f.text_field :title %>
+  <%= f.text_field :author %>
+  <%= f.text_field :description %>
+
+<% end %>

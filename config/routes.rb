@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   # Routes that operate on the book collection
   get '/books', to: 'books#index', as: 'books'
+  # Step 1: Create a view so that a user sees the New Book Form
   get '/books/new', to: 'books#new', as: 'new_book'
+  # Step 2: Create an action so that the form data actually gets processed by Rails (by the server) and creates that new book, and changes the database
   post '/books', to: 'books#create'
 
   # Routes that operate on individual books
