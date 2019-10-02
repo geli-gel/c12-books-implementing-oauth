@@ -61,6 +61,62 @@ describe BooksController do
 
   end
 
+  describe 'create action' do
+
+    it 'creates a new book successfully with valid data, and redirects the user to the book page' do
+      # Arrange
+      # Even though in our Controller code, Rails sets up the form data and params...
+      # ...in the tests, we need to arrange and set this up
+      # For each test that will have form data, we need to add something that looks like the form data in params...
+      book_hash = {
+        book: {
+          title: "Practical Object Oriented Programming in Ruby",
+          author: "Sandi Metz",
+          description: 'A look at how to design object-oriented systems'
+        }
+      }
+
+      # Act-Assert
+      expect {
+        # Don't forget to send the form data hash we just built for this test into params here.
+        post books_path, params: book_hash
+      }.must_differ 'Book.count', 1
+
+      must_redirect_to book_path(Book.find_by(title: "Practical Object Oriented Programming in Ruby"))
+    end
+
+  end
+
+  describe 'update action' do
+
+    it "updates an existing book successfully and redirects to home" do
+
+      # Optional check: check to make sure that at least one Book exists
+      # Pseudocode: expect that Book.count is greater than 0
+
+      # Arrange
+      # Find an existing book and its id
+      # Set up the form data to what the book will be updated to...
+
+      existing_book = Book.first
+      updated_book_form_data = {
+        book: {
+          title: "Practical Object Oriented Programming in Ruby",
+          author: "Sandi Metz",
+          description: 'A look at how to design object-oriented systems'
+        }
+      }
+
+      # Act
+      # Update the book data, don't forget to send the updated_book_form_data in params here
+
+      # Assert
+      # expect( Book.find_by(id: existing_book.id).title ).must_equal "Practical Object Oriented Programming in Ruby"
+
+    end
+
+  end
+
 
 
 end
