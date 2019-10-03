@@ -6,6 +6,7 @@
     <% @books.each do |book| %>
       <li>
         <%= link_to book.title, book_path( book.id ) %> by <%= book.author %>
+        <%= link_to "(Delete)", book_path( book.id ), method: :delete, data: { confirm: "Are YOU sure?" } %>
       </li>
     <% end %>
   </ul>

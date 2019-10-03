@@ -58,4 +58,26 @@ class BooksController < ApplicationController
     end
   end
 
+  def destroy
+    # We will find the right book using the id found in params
+    # Then, depending on if we find it...
+    #   we will either destroy it, then we will redirect to root page
+    #   or not! and we will redirect to index page
+
+    the_correct_book = Book.find_by( id: params[:id] )
+
+    # Because find_by will give back nil if the book is not found...
+
+    if the_correct_book.nil?
+      # Then the book was not found!
+      redirect_to books_path
+      return
+    else
+      # Then we did find it!
+      the_correct_book.destroy
+      redirect_to root_path
+      return
+    end
+  end
+
 end
