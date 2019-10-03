@@ -107,6 +107,43 @@ describe BooksController do
 
   end
 
+  describe 'destroy action' do
+
+    it "successfully deletes an existing Book and then redirects to home page" do
+      Book.create(title: "Valid Book", author: "Valid Author", description: "Valid Description")
+      existing_book_id = Book.find_by(title: "Valid Book").id
+
+      expect {
+        delete book_path( existing_book_id )
+      }.must_differ "Book.count", -1
+
+      must_redirect_to root_path
+    end
+
+    it "redirects to books index page and deletes no books if no books exist" do
+      Book.destroy_all
+      invalid_book_id = 1
+
+      expect {
+        delete book_path( invalid_book_id )
+      }.must_differ "Book.count", 0
+
+      must_redirect_to books_path
+    end
+
+    it "redirects to books index page and deletes no books if deleting a book with an id that has already been deleted" do
+      Book.create(title: "Valid Book", author: "Valid Author", description: "Valid Description")
+      book_id = Book.find_by(title: "Valid Book").id
+      Book.destroy_all
+
+      expect {
+        delete book_path( book_id )
+      }.must_differ "Book.count", 0
+
+      must_redirect_to books_path
+    end
+
+  end
 
 
 end
