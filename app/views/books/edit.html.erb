@@ -1,16 +1,3 @@
 <h2>Edit Book Form</h2>
 
-<%# form_with is a view helper that will generate the proper form for us and will help us hook into the other controller actions %>
-<%= form_with model: @book, class: "edit-book-form" do |f| %>
-
-  <%# f.text_field :somenameofsomeattributeonbook ... in this case, :title %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :author %>
-  <%= f.text_field :author %>
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-  
-  <%= f.submit "Edit Book", class: "book-form-button" %>
-
-<% end %>
+<%= render partial: "form", locals: { submit_button_label: "Edit Book", book_form_class: "edit-book-form" } %>
