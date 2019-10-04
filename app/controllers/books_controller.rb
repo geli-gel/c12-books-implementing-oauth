@@ -32,7 +32,8 @@ class BooksController < ApplicationController
 
     # First, we will access the form data from the new book form using params and its very specific data structure
 
-    @book = Book.new( title: params[:book][:title], author: params[:book][:author], description: params[:book][:description] )
+    # Every time I call something like Book.new, Book.create, Book.update in the controller, I will replace the params with strong params
+    @book = Book.new( book_params )
 
     if @book.save
       redirect_to book_path(@book.id)
@@ -78,6 +79,19 @@ class BooksController < ApplicationController
       redirect_to root_path
       return
     end
+  end
+
+  private
+
+  # Every method defined under the word private is going to be a private method
+
+  def book_params
+    # The responsibility of this method is to return "strong params"
+    # .require is used when we use form_with and a model, and therefore our expected form data has the "book" hash inside of it
+    # .permit takes in a list of names of attributes to allow... (aka the new Book form has title, author, description)
+    return params.require(:book).permit(:title, :author, :description)
+
+    # Remember: If you ever update the database, model, and form, this will also need to be updated
   end
 
 end
