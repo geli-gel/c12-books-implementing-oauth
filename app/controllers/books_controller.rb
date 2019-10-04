@@ -48,9 +48,9 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find_by(id: params[:id] )
-    @book.update( book_params )
 
-    if @book.save
+    # Instead of doing @book.title = ... assignment, and then @book.save, we will instead do "if @book.update( book_params )" to use strong params pattern. @book.update() will be false if the update was unsuccessful
+    if @book.update( book_params )
       redirect_to book_path(@book.id)
     else
       render new_book_path
