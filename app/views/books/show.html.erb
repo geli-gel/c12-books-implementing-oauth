@@ -1,6 +1,6 @@
 <header class="show-header">
   <h1><%=@book.title%></h1>
-  <h2>by <%=@book.author%></h2>
+  <h2>by <%=@book.author.name%></h2>
   <%= link_to "Edit this book!", edit_book_path(@book.id) %>
 </header>
 
