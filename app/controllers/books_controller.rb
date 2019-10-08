@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
 
   def index
-    @books = Book.all
+    @books = Book.all_in_alpha_order
     # @name = {first_name: "Dee"}
 
     # By default, our controllers will look for an appropriate view (aka something in views/books/index.html.erb)
@@ -13,9 +13,8 @@ class BooksController < ApplicationController
   end
 
   def show
-    book_id = params[:id].to_i
     # Both find and find_by will work... But Dee has a preference for find_by. Why?
-    @book = Book.find_by(id: book_id)
+    @book = Book.find_by(id: params[:id])
     if @book.nil?
       head :not_found
       return
