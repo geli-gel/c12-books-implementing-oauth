@@ -1,6 +1,10 @@
 require "test_helper"
 
 describe BooksController do
+
+  let(:valid_author) {
+    Author.create(name: "Some Valid Author")
+  }
   
   describe "index action" do
 
@@ -35,7 +39,7 @@ describe BooksController do
   describe 'show action' do
 
     it 'responds with a success when id given exists' do
-      valid_book = Book.create(title: "Valid Book")
+      valid_book = Book.create(title: "Valid Book", author: valid_author)
       
       get book_path(valid_book.id)
 
@@ -61,7 +65,7 @@ describe BooksController do
       book_hash = {
         book: {
           title: "Practical Object Oriented Programming in Ruby",
-          author: "Sandi Metz",
+          author_id: valid_author.id,
           description: 'A look at how to design object-oriented systems'
         }
       }
@@ -110,7 +114,7 @@ describe BooksController do
   describe 'destroy action' do
 
     it "successfully deletes an existing Book and then redirects to home page" do
-      Book.create(title: "Valid Book", author: "Valid Author", description: "Valid Description")
+      Book.create(title: "Valid Book", author: valid_author, description: "Valid Description")
       existing_book_id = Book.find_by(title: "Valid Book").id
 
       expect {
@@ -132,7 +136,7 @@ describe BooksController do
     end
 
     it "redirects to books index page and deletes no books if deleting a book with an id that has already been deleted" do
-      Book.create(title: "Valid Book", author: "Valid Author", description: "Valid Description")
+      Book.create(title: "Valid Book", author: valid_author, description: "Valid Description")
       book_id = Book.find_by(title: "Valid Book").id
       Book.destroy_all
 
