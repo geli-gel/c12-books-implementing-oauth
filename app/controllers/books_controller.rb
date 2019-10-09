@@ -1,15 +1,14 @@
 class BooksController < ApplicationController
 
   def index
-    @books = Book.all_in_alpha_order
-    # @name = {first_name: "Dee"}
 
-    # By default, our controllers will look for an appropriate view (aka something in views/books/index.html.erb)
-    # If I WANTED to, I can tell the controller to give back a certain format-type and status code (like below:)
-    # return head :not_found
-
-    # By default, our controllers will look for a view to send back, along with assuming it is a status code of 200
-    # If we need to specify otherwise, we will do so in the controller
+  
+    if params[:author_id]
+      author = Author.find_by(id: params[:author_id])
+      @books = author.books
+    else
+      @books = Book.all
+    end
   end
 
   def show
@@ -23,7 +22,11 @@ class BooksController < ApplicationController
 
   def new
     # This new "empty" instance of the Book model is used in the view's form... When it's "empty", the form will be empty
-    @book = Book.new
+    if (params[:author_id])
+      @book = Author.find_by(id: params[:author_id]).books.new
+    else
+      @book = Book.new
+    end
   end
 
   def create

@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   # The syntax for generating the seven conventional RESTful routes for a given controller are:
   # resources _a symbol of the name of the controller_
   resources :books
+  resources :authors do
+    resources :books, shallow: true
+  end
 end

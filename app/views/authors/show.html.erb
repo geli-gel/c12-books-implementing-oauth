@@ -1,0 +1,12 @@
+<header class="show-header">
+  <h1><%=@author.name%></h1>
+  <%= link_to "Edit this author!", edit_author_path(@author.id) %>
+</header>
+
+<section class="show-details">
+
+  <p>I don't know anything about this author but here's Ada Lovelace!</p>
+
+  <%= image_tag "https://smsa.org.au/assets/ada-with-diagram.jpg", alt: "Ada being a badass", class: "show-ada" %>
+
+</section>
