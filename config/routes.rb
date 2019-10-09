@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # resources _a symbol of the name of the controller_
   resources :books
   resources :authors do
+    # This is equivelant to only: [:index, :new, :create]
     resources :books, shallow: true
   end
 end

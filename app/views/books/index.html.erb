@@ -1,7 +1,12 @@
 <h1 class="index-header">The Index Action: The place where you get all of the books!</h1>
 
 <section>
-  <h2>List of all Books</h2>
+  <h2>
+    List of all Books 
+    <% if @author %>
+      by <%= @author.name %>
+    <% end %>
+  </h2>
   <ul>
     <% @books.each do |book| %>
       <li>
@@ -10,4 +15,7 @@
       </li>
     <% end %>
   </ul>
+  <% if @author %>
+    <%= link_to "Create a new book by " + @author.name, new_author_book_path %>
+  <% end %>
 </section>

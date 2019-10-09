@@ -1,13 +1,19 @@
 class BooksController < ApplicationController
 
+  # Can now be accessed via /, /books, or /authors/:author_id/books
   def index
-
-  
-    if params[:author_id]
-      author = Author.find_by(id: params[:author_id])
-      @books = author.books
-    else
+    author_id = params[:author_id]
+    # If not coming from /authors/:author_id/books
+    if author_id.nil?
       @books = Book.all
+    else
+      @author = Author.find_by(id: author_id)
+      if @author
+        @books = @author.books
+      # We couldn't find the given author_id in the database
+      else
+        head :not_found
+      end
     end
   end
 
@@ -21,11 +27,13 @@ class BooksController < ApplicationController
   end
 
   def new
-    # This new "empty" instance of the Book model is used in the view's form... When it's "empty", the form will be empty
-    if (params[:author_id])
-      @book = Author.find_by(id: params[:author_id]).books.new
+    author_id = params[:author_id]
+    @book = Book.new
+    if author_id.nil?
+      @authors = Author.all
     else
-      @book = Book.new
+      @authors = [Author.find_by(id: author_id)]
+
     end
   end
 
