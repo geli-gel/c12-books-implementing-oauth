@@ -5,34 +5,24 @@ describe Book do
   describe "validations" do
 
     # Dee's tip: Make a variable in a before or let block that is always a valid book
+    before do
+      existing_author = Author.new
+      @book = Book.new(title: "Valid, Present Title", author: existing_author)
+    end
     
     it "can be valid" do
-      # Arrange
-      # Arranging all of the attributes of a new book so that they are valid
+      is_valid = @book.valid?
 
-      # Act
-      # Making a book, and then triggering validation check
-
-      # Assert
-      # our book.valid? IS true
-      # maybe we will test that there are no errors
+      assert( is_valid )
     end
 
     it "is invalid if there is no title" do
-      # Arrange
-      # Get the valid book, then INVALIDATE IT by re-assigning the title with an invalid value
-      book.title = ""
+      @book.title = ""
 
-      # Act
-      # Trigger the validation check
+      is_valid = @book.valid?
 
-      # Assert
-      # our book.valid? is false
-      # possibly check the structure of .errors
-
-
+      refute( is_valid )
     end
-
 
   end
 
