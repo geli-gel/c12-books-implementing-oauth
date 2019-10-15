@@ -63,3 +63,8 @@ a.index-delete-link, a:visited.index-delete-link {
   color: darkred;
   text-decoration: none;
 }
+
+.user-messages {
+  color: darkmagenta;
+  font-size: 3rem;
+}

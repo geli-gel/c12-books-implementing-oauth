@@ -29,25 +29,22 @@ class BooksController < ApplicationController
   def new
     author_id = params[:author_id]
     @book = Book.new
-    if author_id.nil?
-      @authors = Author.all
-    else
+    @authors = Author.all
+    if author_id
       @authors = [Author.find_by(id: author_id)]
-
     end
   end
 
   def create
-    # Step 2: Create an action so that the form data actually gets processed by Rails (by the server) and creates that new book, and changes the database... Also, if there is an error in changing the database, we will handle it here.
-
-    # First, we will access the form data from the new book form using params and its very specific data structure
-
-    # Every time I call something like Book.new, Book.create, Book.update in the controller, I will replace the params with strong params
     @book = Book.new( book_params )
+    @authors = Author.all
 
     if @book.save
+      # If the book saves correctly, we will notify the user that it was good using flash, and then redirect them to the book show page
+      flash[:success] = "Book added successfully"
       redirect_to book_path(@book.id)
     else
+      flash.now[:error] = "You didn't do it right."
       render new_book_path
     end
   end
