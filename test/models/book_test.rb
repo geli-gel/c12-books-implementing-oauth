@@ -5,21 +5,17 @@ describe Book do
   describe "validations" do
 
     # Dee's tip: Make a variable in a before or let block that is always a valid book
-    before do
-      existing_author = Author.new
-      @book = Book.new(title: "Valid, Present Title", author: existing_author)
-    end
     
     it "can be valid" do
-      is_valid = @book.valid?
+      is_valid = books(:valid_book_without_release_date).valid?
 
       assert( is_valid )
     end
 
     it "is invalid if there is no title" do
-      @book.title = ""
+      book = books(:invalid_book_without_title)
 
-      is_valid = @book.valid?
+      is_valid = book.valid?
 
       refute( is_valid )
     end
@@ -47,7 +43,7 @@ describe Book do
       # Arrange
       # There is an author
       # There is a book
-      author = Author.create!(name: "test author")
+      author = authors(:metz)
       book = Book.new(title: "test book")
 
       # Act
@@ -63,7 +59,7 @@ describe Book do
       # Arrange
       # There is an author
       # There is a book
-      author = Author.create!(name: "test author")
+      author = authors(:metz)
       book = Book.new(title: "test book")
 
       # Act

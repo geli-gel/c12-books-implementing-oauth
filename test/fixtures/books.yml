@@ -1,0 +1,7 @@
+valid_book_without_release_date:
+  title: POODR
+  description: A resource we use at Ada
+  author: metz
+invalid_book_without_title:
+  description: A resource we use at Ada
+  author: metz
