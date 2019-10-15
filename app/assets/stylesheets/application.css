@@ -65,6 +65,7 @@ a.index-delete-link, a:visited.index-delete-link {
 }
 
 .user-messages {
+  margin: 2rem;
   color: darkmagenta;
-  font-size: 3rem;
+  font-size: 1.5rem;
 }

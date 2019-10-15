@@ -41,7 +41,7 @@ class BooksController < ApplicationController
 
     if @book.save
       # If the book saves correctly, we will notify the user that it was good using flash, and then redirect them to the book show page
-      flash[:success] = "Book added successfully"
+      flash[:success] = "Book #{@book.id} added successfully"
       redirect_to book_path(@book.id)
     else
       flash.now[:error] = "You didn't do it right."

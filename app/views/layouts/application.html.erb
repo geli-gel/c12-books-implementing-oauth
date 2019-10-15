@@ -32,7 +32,7 @@
     <%# Our nice generic way of displaying flash messages: Iterating over the hash-like structure of flash and setting all HTML elements and CSS classes however we want. %>
     <section class="user-messages">
       <% flash.each do |name, message| %>
-        <div class="<%= name %>"><%= message %></div>
+        <div class="<%= name %>"><%= name.capitalize %>: <%= message %></div>
       <% end %>
     </section>
 
