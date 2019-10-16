@@ -79,6 +79,7 @@ class BooksController < ApplicationController
     else
       # Then we did find it!
       the_correct_book.destroy
+      flash[:success] = "Your book " + the_correct_book.title + " was successfully deleted!"
       redirect_to root_path
       return
     end
