@@ -1,5 +1,7 @@
 class BooksController < ApplicationController
 
+  before_action :find_book, only: [:show, :edit, :update]
+
   # Can now be accessed via /, /books, or /authors/:author_id/books
   def index
     author_id = params[:author_id]
@@ -18,8 +20,6 @@ class BooksController < ApplicationController
   end
 
   def show
-    # Both find and find_by will work... But Dee has a preference for find_by. Why?
-    @book = Book.find_by(id: params[:id])
     if @book.nil?
       head :not_found
       return
@@ -50,13 +50,10 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @book = Book.find_by(id: params[:id] )
     @authors = Author.all
   end
 
   def update
-    @book = Book.find_by(id: params[:id] )
-
     # Instead of doing @book.title = ... assignment, and then @book.save, we will instead do "if @book.update( book_params )" to use strong params pattern. @book.update() will be false if the update was unsuccessful
     if @book.update( book_params )
       redirect_to book_path(@book.id)
@@ -88,6 +85,10 @@ class BooksController < ApplicationController
   end
 
   private
+
+  def find_book
+    @book = Book.find_by(id: params[:id])
+  end
 
   # Every method defined under the word private is going to be a private method
 
