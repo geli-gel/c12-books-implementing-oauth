@@ -2,30 +2,30 @@ input_books = [
   {
     title: "Between The World and Me",
     author: "Ta-Nehisi Coates",
-    publication_date: 2015,
+    publication_date: "2015-1-11",
   },
   {
     title: "Bad Feminist",
     author: "Roxane Gay",
-    publication_date: 2014,
+    publication_date: "2014-21-4",
   },
   {
     title: "Hidden Figures",
     author: "Margot Lee Shetterly",
     description: "The phenomenal true story of the black female mathematicians at NASA",
-    publication_date: 2016,
+    publication_date: "2016-9-4",
   },
   {
     title: "Practical Object-Oriented Design in Ruby",
     author: "Sandi Metz",
     description: "A great book on object-oriented design",
-    publication_date: 2012,
+    publication_date: "2012-21-12",
   },
   {
     title: "99 Bottles of OOP",
     author: "Sandi Metz",
     description: "An even more in-depth book on object-oriented design",
-    publication_date: 2016,
+    publication_date: "2016-08-22",
   },
 ]
 
