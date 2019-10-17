@@ -34,6 +34,10 @@ class UsersController < ApplicationController
 
   def current
     @user = User.find_by(id: session[:user_id])
+    if @user.nil?
+      head :not_found
+      return
+    end 
   end
 
 end
