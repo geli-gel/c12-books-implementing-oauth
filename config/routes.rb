@@ -10,8 +10,11 @@ Rails.application.routes.draw do
     resources :books, shallow: true
   end
 
-  get "/login", to: "users#login_form", as: "login"
-  post "/login", to: "users#login"
-  post "/logout", to: "users#logout", as: "logout"
+  # get "/login", to: "users#login_form", as: "login"
+  # post "/login", to: "users#login"
+  # post "/logout", to: "users#logout", as: "logout"
   get "/users/current", to: "users#current", as: "current_user"
+
+  get "/auth/github", as: "github_login"
+  get "/auth/github/callback", to: "users#create"
 end

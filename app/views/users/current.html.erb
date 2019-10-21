@@ -3,6 +3,7 @@
 <% if @user.nil? %>
   <p>I am not logged in!</p>
 <% else %>
-  <p>I'm logged in! My name is: <%= @user.username %></p>
+  <p>I'm logged in! My name is: <%= @user.name %></p>
+  <p>I'm logged in! My UID is: <%= @user.uid %></p>
 <% end %>
 

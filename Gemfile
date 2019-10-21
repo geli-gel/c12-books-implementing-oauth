@@ -76,6 +76,7 @@ group :development do
   gem 'guard-minitest'
   gem 'debase', '>= 0.2.4.1'
   gem 'ruby-debug-ide', '>= 0.7.0'
+  gem 'dotenv-rails'
 end
 
 group :test do
@@ -83,3 +84,6 @@ group :test do
   gem 'minitest-reporters'
   gem 'minitest-skip'
 end
+
+gem "omniauth"
+gem "omniauth-github"

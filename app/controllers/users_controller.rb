@@ -1,5 +1,27 @@
 class UsersController < ApplicationController
 
+  def create
+    auth_hash = request.env["omniauth.auth"]
+    user = User.find_by(uid: auth_hash[:uid], provider: "github")
+    if user
+      # user was found in db
+      # log theem in to session
+      flash[:success] = "Logged in as returning user #{user.name}"
+    else
+      # user not in DB, try to create new user
+      # user = User.new(uid: auth_hash[:uid], provider: "github", name: auth_hash[:info][:name], email: auth_hash[:info][:email] )
+      user = User.build_from_github(auth_hash)
+      if user.save
+        flash[:success] = "Logged in as returning user #{user.name}"
+      else
+        flash[:error] = "something went wrong,sry"
+      end
+    end
+    session[:user_id] = user.id
+    redirect_to root_path
+
+  end
+
   def login_form
     @user = User.new
   end
