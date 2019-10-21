@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       # user = User.new(uid: auth_hash[:uid], provider: "github", name: auth_hash[:info][:name], email: auth_hash[:info][:email] )
       user = User.build_from_github(auth_hash)
       if user.save
-        flash[:success] = "Logged in as returning user #{user.name}"
+        flash[:success] = "Logged in as new user #{user.name}"
       else
         flash[:error] = "something went wrong,sry"
       end
